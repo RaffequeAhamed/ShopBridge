@@ -26,7 +26,6 @@ namespace ShopBridge.DateAccess.Repository
             List<Product> Productlist = new List<Product>(); 
             try
             {
-               // await AddProduct(null);
                 Productlist = _dbEntities.Products.ToList();
             }
             catch (Exception ex)

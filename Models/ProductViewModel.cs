@@ -3,8 +3,6 @@ using ShopBridge.Framework.StorageClass;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ShopBridge.Models
 {
@@ -31,10 +29,10 @@ namespace ShopBridge.Models
         [Display(Name = "Product Manufacture date")]
         public DateTime ProductManufacturedDate { get; set; } = DateTime.Now;
         public List<Product> ProductList { get; set; }
-        public string Mode{ get; set; }
-        public string Title{ get; set; }
+        public string Mode { get; set; }
+        public string Title { get; set; }
 
-        public ProductViewModel BuildProductInformation(Product product_Info , string mode)
+        public ProductViewModel BuildProductInformation(Product product_Info, string mode)
         {
             ProductID = product_Info.ProductID;
             ProductName = product_Info.ProductName;
@@ -57,9 +55,7 @@ namespace ShopBridge.Models
             productInfo.ProductStatus = ProductStatus;
             productInfo.ProductPrice = ProductPrice;
             productInfo.ProductManufacturedDate = ProductManufacturedDate;
-
-
             return productInfo;
         }
-    }  
+    }
 }
