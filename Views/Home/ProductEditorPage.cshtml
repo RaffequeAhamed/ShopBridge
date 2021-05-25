@@ -1,0 +1,86 @@
+﻿@model ProductViewModel
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .input-validation-error {
+        border-color: #f86c6b;
+    }
+</style>
+<form id="productEditor-form" asp-controller="Home" asp-action="SaveProduct" data-ajax="true" data-ajax-method="POST">
+    @Html.HiddenFor(m => m.ProductID)
+    @Html.HiddenFor(m => m.Mode)
+    @Html.HiddenFor(m => m.ProductManufacturedDate)
+    <div class="animated fadein col-md-12 p-a-0 m-a-0">
+        <div class="col-md-12">
+            <div class="card-block p-a-0">
+                <div class="row">
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-md-12">
+                        @Html.LabelFor(m => m.ProductName, htmlAttributes: new { @class = "col-md-6" })
+                        @Html.TextBoxFor(m => m.ProductName, htmlAttributes: new { @class = "form-control col-md-6" })
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="form-group">
+                    <div class="input-group col-md-12">
+                        @Html.LabelFor(m => m.ProductDescription, htmlAttributes: new { @class = "col-md-6" })
+                        @Html.TextBoxFor(m => m.ProductDescription, htmlAttributes: new { @class = " form-control col-md-6" })
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="form-group m-y-1">
+                    <div class="input-group col-md-12">
+                        @Html.LabelFor(m => m.ProductQuantity, htmlAttributes: new { @class = "col-md-6" })
+
+                        @Html.TextBoxFor(m => m.ProductQuantity, htmlAttributes: new { @class = "form-control col-md-3", @type = "number" })
+                        @Html.DropDownListFor(m => m.ProductUnit, Html.GetEnumSelectList(typeof(MeasurementUnit)), new { @class = "form-control col-md-3 select2-drop-active" })
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="form-group m-y-1">
+                    <div class="input-group col-md-12">
+                        @Html.LabelFor(m => m.ProductPrice, htmlAttributes: new { @class = "col-md-6" })
+                        @Html.TextBoxFor(m => m.ProductPrice, htmlAttributes: new { @class = "form-control col-md-6", @type = "number" })
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="form-group m-y-1">
+                    <div class="input-group col-md-12">
+                        @Html.LabelFor(m => m.ProductStatus, htmlAttributes: new { @class = "col-md-6" })
+                        @Html.DropDownListFor(m => m.ProductStatus, Html.GetEnumSelectList(typeof(ProductStatus)), new { @class = "form-control col-md-6 select2-drop-active" })
+                    </div>
+                </div>
+                <footer class="form-group m-y-1 pull-right">
+                    <div class="input-group col-md-12">
+                        <button class="btn-primary" onclick="ValidateForm();" type="button">Submit</button>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $.mask.definitions['d'] = '[0-9.]';
+    $.mask.definitions['e'] = '[0-9]';
+    $("#ProductQuantity").mask("9?eeeeee");
+    $("#ProductPrice").mask("9?dddddddd");
+    function ValidateForm() {
+        $("#ProductInfoData_Name").val($("#ProductName").val().trim());
+        var form = $('#productEditor-form');
+        $.validator.unobtrusive.parse(form);
+        var validator = form.data('validator');
+        validator.settings.ignore = "";
+        if (form.valid()) {
+            form.submit();
+        }
+    }
+
+</script>
