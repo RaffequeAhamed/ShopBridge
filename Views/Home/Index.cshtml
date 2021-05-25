@@ -11,17 +11,17 @@
         <div>
             <a class="act-btn addProduct" href="Home/NewProduct" title="New"><i class="fa fa-plus">Add Product</i></a>
         </div>
-        <table id="product-table" class="table cs-table table-striped table-bordered datatable compact" style="width:100%">
+        <table id="product-table" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th hidden></th>
-                    <th>Product name</th>
-                    <th>Product Description</th>
-                    <th>Product Price</th>
-                    <th>Product Quantity</th>
+                    <th style="width:150px">Name</th>
+                    <th style="width:200px">Description</th>
+                    <th class="text-right">Price(₹)</th>
+                    <th class="text-right">Quantity</th>
                     <th>Product Unit</th>
-                    <th>Product Status</th>
-                    <th>Manufacture Date</th>
+                    <th>Status</th>
+                    <th style="width:150px">Manufacture Date</th>
                     <th> Action</th>
                 </tr>
             </thead>
@@ -32,8 +32,8 @@
                         <td hidden class="Id">@produt.ProductID"</td>
                         <td class="name">@produt.ProductName</td>
                         <td class="desc">@produt.ProductDescription</td>
-                        <td class="price">@produt.ProductPrice</td>
-                        <td class="quantity">@produt.ProductQuantity</td>
+                        <td class="price text-right">@produt.ProductPrice</td>
+                        <td class="quantity text-right">@produt.ProductQuantity</td>
                         <td class="unit">@produt.ProductUnit</td>
                         <td class="status">@produt.ProductStatus</td>
                         <td class="mfgDate">@produt.ProductManufacturedDate</td>
